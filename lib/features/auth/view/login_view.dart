@@ -78,6 +78,35 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Gap(20),
+
+
+                  GestureDetector(
+                    onTap: (){
+                      if (formKey.currentState !.validate()){
+
+                        print("object");
+                      };
+
+                    },
+                    child: Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: Colors.white12,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+
+                      width: double.infinity,
+                      child: Center(
+                        child: CustomText(
+                          text: 'Singin',
+                          color: Colors.white,
+                          size: 20,
+                          Weight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
