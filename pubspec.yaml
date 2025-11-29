@@ -18,6 +18,8 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   flutter_svg:
+  animated_bottom_navigation_bar:
+
   gap:
 
 dev_dependencies:
