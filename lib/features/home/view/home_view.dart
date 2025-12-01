@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_color.dart';
+import 'package:hungry/features/auth/widget/card_item.dart';
+import 'package:hungry/features/auth/widget/food_catgory.dart';
+import 'package:hungry/features/auth/widget/search_field.dart';
+import 'package:hungry/features/auth/widget/user_header.dart';
 
 import '../../../shared/custom_text.dart';
 
@@ -22,127 +26,72 @@ class _HomeViewState extends State<HomeView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            children: [
-              Gap(70),
-
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        "assets/Hungry_.svg",
-                        color: AppColor.Primru,
-                        height: 40,
-                      ),
-                      Gap(10),
-                      CustomText(
-                        text: "Hello back",
-                        color: AppColor.Primru,
-                        Weight: FontWeight.w500,
-                        size: 14,
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  CircleAvatar(radius: 30),
-                ],
-              ),
-
-              Gap(20),
-
-              Material(
-                elevation: 10,
-                shadowColor: Colors.black26,
-                borderRadius: BorderRadius.circular(15),
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      CupertinoIcons.search,
-                      color: AppColor.Primru,
-                    ),
-                    hintText: 'Search...',
-                    hintStyle: TextStyle(color: Colors.grey),
-
-                    // لازم border عشان الشكل يبقى كامل
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(color: Colors.white, width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: AppColor.Primru,
-                        width: 1.5,
-                      ),
-                    ),
-
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 12,
-                      horizontal: 10,
-                    ),
-                  ),
-                ),
-              ),
-              Gap(30),
+        backgroundColor: Colors.white,
+        body: CustomScrollView(
+          slivers: [
 
 
-
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(category.length, (index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selcetedIndex = index;
-                        });
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          color: selcetedIndex == index ? AppColor.Primru : Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        child: CustomText(
-                          text: category[index],
-                          Weight: FontWeight.bold,
-                          color: selcetedIndex == index ? Colors.white : Colors.black,
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-
-              Gap(20),
-
-              Card(
-                child: Padding(padding: const EdgeInsets.all(8),
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              pinned: true,
+              automaticallyImplyLeading: false,
+              toolbarHeight:170,
+              flexibleSpace:Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 30),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
-                    Image.asset("assets/burg 5.png",width: 150,),
+                    UserHeader(),
+
+
+                    SearchField(),
                     Gap(10),
-                    CustomText(text: "Cheeseburger", Weight: FontWeight.bold),
-                    CustomText(text: "wendy", Weight: FontWeight.w500),
-                    CustomText(text: " 3.4", Weight: FontWeight.w500),
+
+                  ],
+                ),
+
+              ),
+            ),
+
+            SliverToBoxAdapter(
+
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  children: [
+
+                    FoodCatgory(selcetedIndex: selcetedIndex, category: category),
 
 
                   ],
                 ),
+              ),
+            ),
+
+
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              sliver: SliverGrid(
+                delegate: SliverChildBuilderDelegate(
+                      (context, index) => CardItem(
+                    image: "assets/burg 5.png",
+                    text: "Cheeseburger",
+                    desc: "Wendy's Burger",
+                    rate: "4.9",
+                  ),
+                  childCount: 8,
                 ),
-              )
-            ],
-          ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.71,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+              ),
+            ),
+
+          ],
         ),
+
       ),
     );
   }
