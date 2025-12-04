@@ -4,6 +4,8 @@ import 'package:hungry/splash.dart';
 
 import 'features/auth/view/login_view.dart';
 import 'features/auth/view/singup_veiw.dart';
+import 'features/card/view/card_view.dart';
+import 'features/checkout/view/chechout_view.dart';
 import 'features/prodact/view/prodact_view.dart';
 
 void main() {
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: ProdactView(),
+      home: ChechoutView(),
+
     );
   }
 }

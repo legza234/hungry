@@ -91,6 +91,7 @@ class _ProdactViewState extends State<ProdactView> {
                   CustomBotton(text: "Add To Card",onTap: (){},)
                 ],
               ),
+              Gap(40),
           
           
           
