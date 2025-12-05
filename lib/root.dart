@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hungry/core/constants/app_color.dart';
-import 'package:hungry/features/auth/view/profile_veiw.dart';
 import 'package:hungry/features/card/view/card_view.dart';
 import 'package:hungry/features/home/view/home_view.dart';
 import 'package:hungry/features/orderHistory/view/order_history_view.dart';
+
+import 'features/profile/veiw/profile_veiw.dart';
+
+
+
+
 
 class Root extends StatefulWidget {
   const Root({super.key});

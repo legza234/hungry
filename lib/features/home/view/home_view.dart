@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_color.dart';
-import 'package:hungry/features/auth/widget/card_item.dart';
-import 'package:hungry/features/auth/widget/food_catgory.dart';
-import 'package:hungry/features/auth/widget/search_field.dart';
-import 'package:hungry/features/auth/widget/user_header.dart';
+
 import 'package:hungry/features/prodact/view/prodact_view.dart';
 
 import '../../../shared/custom_text.dart';
+import '../../login/widget/card_item.dart';
+import '../../login/widget/food_catgory.dart';
+import '../../login/widget/search_field.dart';
+import '../../login/widget/user_header.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

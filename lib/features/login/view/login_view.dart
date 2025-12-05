@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry/features/login/view/singup_veiw.dart';
 import 'package:hungry/shared/custom_text.dart';
 import 'package:hungry/shared/custom_text_field.dart';
 
@@ -81,25 +82,24 @@ class LoginView extends StatelessWidget {
                   Gap(20),
 
 
+                  // زر Sign Up
                   GestureDetector(
-                    onTap: (){
-                      if (formKey.currentState !.validate()){
-
-                        print("object");
-                      };
-
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const SignUpView()), // صفحة التسجيل
+                      );
                     },
                     child: Container(
                       height: 45,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white12,
                         borderRadius: BorderRadius.circular(25),
                       ),
-
-                      width: double.infinity,
-                      child: Center(
+                      child: const Center(
                         child: CustomText(
-                          text: 'Singin',
+                          text: 'Sign Up', // بدل Sign In
                           color: Colors.white,
                           size: 20,
                           Weight: FontWeight.bold,
@@ -107,6 +107,7 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                   ),
+
                 ],
               ),
             ),

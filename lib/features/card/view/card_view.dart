@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart' show Gap;
 import 'package:hungry/core/constants/app_color.dart';
-import 'package:hungry/features/auth/widget/card_item.dart';
 import 'package:hungry/features/card/widget/cart__item.dart';
 import 'package:hungry/shared/Custom_botton.dart';
 import 'package:hungry/shared/custom_text.dart';

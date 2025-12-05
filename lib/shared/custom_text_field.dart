@@ -2,8 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-
-  const CustomTextField({super.key, required this.hint, required this.ispassward, required this.controller});
+  const CustomTextField({
+    super.key,
+    required this.hint,
+    required this.ispassward,
+    required this.controller,
+  });
 
   final String hint;
   final bool ispassward;
@@ -16,48 +20,53 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   late bool _obscureText;
 
-@override
+  @override
   void initState() {
-  _obscureText =widget.ispassward;
+    _obscureText = widget.ispassward;
     super.initState();
   }
-void _togglePassward(){
-  setState(() {
-    _obscureText =!_obscureText;
-  });
-}
+
+  void _togglePassword() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      style: TextStyle(
-          color: Colors.white
-      ),
-      cursorColor: Colors.black,
-      validator: (v){
-        if (v ==null || v.isEmpty){
-         return 'please fill ${widget.hint}';
+      style: const TextStyle(color: Colors.white),
+      cursorColor: Colors.white,
+      validator: (v) {
+        if (v == null || v.isEmpty) {
+          return 'Please fill ${widget.hint}';
         }
-        null;
+        return null;
       },
       obscureText: _obscureText,
       decoration: InputDecoration(
-        suffixIcon:
-        widget.ispassward?
-        GestureDetector(
-            onTap: _togglePassward,
-
-
-            child: Icon(CupertinoIcons.eye,color: Colors.white,)):null,
+        suffixIcon: widget.ispassward
+            ? IconButton(
+          icon: Icon(
+            _obscureText
+                ? CupertinoIcons.eye
+                : CupertinoIcons.eye_slash,
+            color: Colors.white,
+          ),
+          onPressed: _togglePassword,
+        )
+            : null,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(12),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(12),
         ),
         hintText: widget.hint,
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.white70),
         fillColor: Colors.white12,
         filled: true,
       ),
