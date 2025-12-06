@@ -7,11 +7,13 @@ class CustomTextField extends StatefulWidget {
     required this.hint,
     required this.ispassward,
     required this.controller,
+    this.keyboardType = TextInputType.text, // Add keyboardType
   });
 
   final String hint;
   final bool ispassward;
   final TextEditingController controller;
+  final TextInputType keyboardType; // Add keyboardType
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -36,6 +38,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      keyboardType: widget.keyboardType, // Use keyboardType
       style: const TextStyle(color: Colors.white),
       cursorColor: Colors.white,
       validator: (v) {
@@ -48,14 +51,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         suffixIcon: widget.ispassward
             ? IconButton(
-          icon: Icon(
-            _obscureText
-                ? CupertinoIcons.eye
-                : CupertinoIcons.eye_slash,
-            color: Colors.white,
-          ),
-          onPressed: _togglePassword,
-        )
+                icon: Icon(
+                  _obscureText
+                      ? CupertinoIcons.eye
+                      : CupertinoIcons.eye_slash,
+                  color: Colors.white,
+                ),
+                onPressed: _togglePassword,
+              )
             : null,
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white),
