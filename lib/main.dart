@@ -5,10 +5,7 @@ import 'package:hungry/splash.dart';
 
 import 'features/card/view/card_view.dart';
 import 'features/checkout/view/chechout_view.dart';
-import 'features/login/view/login_view.dart';
-import 'features/login/view/singup_veiw.dart';
 import 'features/prodact/view/prodact_view.dart';
-import 'features/profile/veiw/profile_veiw.dart';
 
 void main() {
   runApp(const MyApp());

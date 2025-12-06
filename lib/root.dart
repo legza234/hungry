@@ -5,7 +5,7 @@ import 'package:hungry/features/card/view/card_view.dart';
 import 'package:hungry/features/home/view/home_view.dart';
 import 'package:hungry/features/orderHistory/view/order_history_view.dart';
 
-import 'features/profile/veiw/profile_veiw.dart';
+import 'features/auth/profile/profile_veiw.dart';
 
 
 

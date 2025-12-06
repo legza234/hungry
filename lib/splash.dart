@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_color.dart';
-import 'package:hungry/features/login/view/login_view.dart';
 import 'package:hungry/root.dart';
+
+import 'features/auth/view/login_view.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

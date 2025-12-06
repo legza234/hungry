@@ -21,6 +21,8 @@ dependencies:
   animated_bottom_navigation_bar:
 
   gap:
+  dio: ^5.9.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hungry/features/profile/widget/custom_field_profile.dart';
 
 import '../../../core/constants/app_color.dart';
-import '../../../shared/custom_text_field.dart';
 import '../../checkout/widget/payment_method_selector.dart';
+import 'custom_field_profile.dart';
+
 
 class ProfileVeiw extends StatefulWidget {
   ProfileVeiw({super.key});
