@@ -7,10 +7,11 @@ import 'package:hungry/core/constants/app_color.dart';
 import 'package:hungry/features/prodact/view/prodact_view.dart';
 
 import '../../../shared/custom_text.dart';
-import '../../login/widget/card_item.dart';
-import '../../login/widget/food_catgory.dart';
-import '../../login/widget/search_field.dart';
-import '../../login/widget/user_header.dart';
+
+import '../widget/card_item.dart';
+import '../widget/food_catgory.dart';
+import '../widget/search_field.dart';
+import '../widget/user_header.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

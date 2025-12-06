@@ -7,6 +7,7 @@ import 'package:hungry/shared/custom_text.dart';
 import 'package:hungry/shared/custom_text_field.dart';
 
 import '../../../core/constants/app_color.dart';
+import '../../../root.dart' show Root;
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -106,7 +107,34 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
+
                   ),
+
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) =>  Root()), // صفحة التسجيل
+                      );
+                    },
+                    child: Container(
+                      height: 45,
+                      width: double.infinity,
+
+                      child: const Center(
+                        child: CustomText(
+                          text: 'Continue as guest?', // بدل Sign In
+                          color: Colors.white,
+                          size: 15,
+                          Weight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                  ),
+
+
 
                 ],
               ),

@@ -19,7 +19,11 @@ class ChechoutView extends StatelessWidget {
       child: Scaffold(
         appBar:AppBar(
           backgroundColor: Colors.white,
-          leading: Icon(Icons.arrow_back_ios_new,color: AppColor.Primru,),
+          leading: GestureDetector(
+              onTap:  (){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back_ios_new,color: AppColor.Primru,)),
         ),     backgroundColor: Colors.white,
         body: Padding(
           padding:  EdgeInsets.all(10),

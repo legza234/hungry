@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_color.dart';
+import 'package:hungry/features/login/view/login_view.dart';
 import 'package:hungry/root.dart';
 
 class Splash extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) =>  Root()), // غيرها للصفحة اللي انت عايزها
+        MaterialPageRoute(builder: (_) =>  LoginView()), // غيرها للصفحة اللي انت عايزها
       );
     });
   }

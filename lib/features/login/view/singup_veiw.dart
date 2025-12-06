@@ -6,7 +6,7 @@ import 'package:hungry/core/constants/app_color.dart';
 
 import '../../../shared/custom_text.dart';
 import '../../../shared/custom_text_field.dart';
-import '../widget/custom_botton.dart';
+import '../../home/widget/custom_botton.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
