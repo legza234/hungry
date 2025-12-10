@@ -27,7 +27,7 @@ class UserHeader extends StatelessWidget {
             CustomText(
               text: "Hello back",
               color: AppColor.Primru,
-              Weight: FontWeight.w500,
+              weight: FontWeight.w500,
               size: 14,
             ),
           ],

@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' show Colors;
 
 class CustomText extends StatelessWidget {
-  const CustomText({super.key,  required this.text,  this.color,  required this.Weight,  this.size, });
+  const CustomText({super.key,  required this.text,  this.color,  required this.weight,  this.size, });
 
   final String text;
   final Color? color;
-  final FontWeight Weight ;
+  final FontWeight weight ;
   final double? size;
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
         fontSize: size,
         color: color,
-        fontWeight: Weight,
+        fontWeight: weight,
       ),
     );
   }

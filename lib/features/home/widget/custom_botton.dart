@@ -26,7 +26,7 @@ final String text;
             text: 'Sing Up',
             color: AppColor.Primru,
             size: 20,
-            Weight: FontWeight.bold,
+            weight: FontWeight.bold,
           ),
         ),
       ),

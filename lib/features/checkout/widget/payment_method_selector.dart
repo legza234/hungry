@@ -70,13 +70,13 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
         leading: Image.asset(image, ),
         title: CustomText(
           text: title,
-          Weight: FontWeight.normal,
+          weight: FontWeight.normal,
           color: Colors.white,
         ),
         subtitle: subtitle != null
             ? CustomText(
           text: subtitle,
-          Weight: FontWeight.normal,
+          weight: FontWeight.normal,
           color: Colors.white,
         )
             : null,

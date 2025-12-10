@@ -48,7 +48,7 @@ late int selcetedIndex ;
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: CustomText(
                 text:widget. category[index],
-                Weight: FontWeight.bold,
+                weight: FontWeight.bold,
                 color: selcetedIndex == index ? Colors.white : Colors.black,
               ),
             ),

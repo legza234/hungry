@@ -23,7 +23,7 @@ class CustomBotton extends StatelessWidget {
         ),
 
 
-        child: CustomText(text: text, Weight: FontWeight.normal,color: Colors.white,),
+        child: CustomText(text: text, weight: FontWeight.normal,color: Colors.white,),
       ),
     );
   }

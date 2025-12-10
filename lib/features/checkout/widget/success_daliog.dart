@@ -27,14 +27,14 @@ class PaymentSuccessDialog extends StatelessWidget {
             const SizedBox(height: 15),
             CustomText(
               text: "Success !",
-              Weight: FontWeight.bold,
+              weight: FontWeight.bold,
               size: 18,
               color: Colors.black,
             ),
             const SizedBox(height: 10),
             CustomText(
               text: "Your order is now confirmed.",
-              Weight: FontWeight.normal,
+              weight: FontWeight.normal,
               color: Colors.grey.shade700,
             ),
             const SizedBox(height: 20),

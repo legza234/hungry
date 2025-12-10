@@ -25,7 +25,7 @@ class _SpicySliderState extends State<SpicySlider> {
           children: [
             CustomText(
                 text: "Customize Your Burger\n to Your Tastes. Ultimate\n Experience",
-                Weight: FontWeight.normal),
+                weight: FontWeight.normal),
             Slider(
               max: 1,
               min: 0,

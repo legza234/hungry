@@ -30,7 +30,7 @@ screens =[
   HomeView(),
   CardView(),
   OrderHistoryView(),
-  ProfileVeiw(),
+  ProfileView(),
 
 
 ];

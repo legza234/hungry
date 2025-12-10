@@ -45,7 +45,7 @@ class _ProdactViewState extends State<ProdactView> {
                 },
               ),
               Gap(20),
-              CustomText(text: "Toppings", Weight: FontWeight.bold,size: 18,),
+              CustomText(text: "Toppings", weight: FontWeight.bold,size: 18,),
               Gap(20),
               SingleChildScrollView(
                 clipBehavior: Clip.none,
@@ -60,7 +60,7 @@ class _ProdactViewState extends State<ProdactView> {
                 ),
               ),
               Gap(20),
-              CustomText(text: "Side options", Weight: FontWeight.bold,size: 18,),
+              CustomText(text: "Side options", weight: FontWeight.bold,size: 18,),
               Gap(20),
               SingleChildScrollView(
                 clipBehavior: Clip.none,
@@ -82,8 +82,8 @@ class _ProdactViewState extends State<ProdactView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(text: "Total", Weight: FontWeight.bold,size: 18,),
-                      CustomText(text: "\$18.19", Weight: FontWeight.bold,size: 32,),
+                      CustomText(text: "Total", weight: FontWeight.bold,size: 18,),
+                      CustomText(text: "\$18.19", weight: FontWeight.bold,size: 32,),
 
 
                     ],

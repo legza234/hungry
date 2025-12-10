@@ -17,12 +17,13 @@ dependencies:
 
 
   cupertino_icons: ^1.0.8
-  flutter_svg:
-  animated_bottom_navigation_bar:
-
-  gap:
+  flutter_svg: ^2.0.10+1
+  animated_bottom_navigation_bar: ^1.3.3
+  gap: ^3.0.1
   dio: ^5.9.0
-  shared_preferences: ^2.5.3
+  shared_preferences:
+  flutter_bloc:
+  image_picker:
 
 dev_dependencies:
   flutter_test:

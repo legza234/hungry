@@ -36,12 +36,12 @@ Widget checkoutWidget (tittle, price,isBold,isSmall){
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomText(text: tittle,
-          Weight:isBold?FontWeight.bold: FontWeight.normal,size:isSmall?13: 15,
+          weight:isBold?FontWeight.bold: FontWeight.normal,size:isSmall?13: 15,
           color: isBold ? Colors.black: Colors.grey.shade600,
         ),
 
         CustomText(text: '$price \$',
-          Weight:isBold?FontWeight.bold: FontWeight.normal,size: 15,
+          weight:isBold?FontWeight.bold: FontWeight.normal,size: 15,
           color: isBold ? Colors.black: Colors.grey.shade600,
         ),
       ],

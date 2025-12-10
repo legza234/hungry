@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -7,7 +6,9 @@ import 'package:hungry/shared/custom_text.dart';
 import 'package:hungry/shared/custom_text_field.dart';
 
 import '../../../core/constants/app_color.dart';
+import '../../../core/network/api_error.dart';
 import '../../../root.dart' show Root;
+import '../data/auth_repo.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -20,6 +21,34 @@ class _LoginViewState extends State<LoginView> {
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final GlobalKey<FormState> formKey;
+
+  AuthRepo authRepo = AuthRepo();
+  //login
+  Future<void> login() async {
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+    try {
+      final user = await authRepo.login(
+          emailController.text.trim(), passwordController.text.trim());
+      if (user.token != null) {
+        if (!mounted) return;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (c) => const Root()),
+        );
+      }
+    } catch (e) {
+      String errorMsg = 'An error occurred';
+      if (e is ApiError) {
+        errorMsg = e.message;
+      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMsg)),
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -39,10 +68,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        behavior: HitTestBehavior.translucent;
-
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: AppColor.Primru,
         body: SingleChildScrollView(
@@ -59,14 +85,14 @@ class _LoginViewState extends State<LoginView> {
                     const CustomText(
                       text: "Welcome back",
                       color: Colors.white,
-                      Weight: FontWeight.w500,
+                      weight: FontWeight.w500,
                       size: 14,
                     ),
                     const Gap(70),
                     CustomTextField(
                       hint: "Email Address",
-          
-                      controller: emailController, ispassward: false,
+                      controller: emailController,
+                      ispassward: false,
                     ),
                     const Gap(20),
                     CustomTextField(
@@ -76,11 +102,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     const Gap(40),
                     GestureDetector(
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          print("object");
-                        }
-                      },
+                      onTap: login,
                       child: Container(
                         height: 45,
                         decoration: BoxDecoration(
@@ -93,7 +115,7 @@ class _LoginViewState extends State<LoginView> {
                             text: 'Login',
                             color: AppColor.Primru,
                             size: 20,
-                            Weight: FontWeight.bold,
+                            weight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -104,7 +126,8 @@ class _LoginViewState extends State<LoginView> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const SignUpView()), // صفحة التسجيل
+                          MaterialPageRoute(
+                              builder: (_) =>  SignUpView()), // صفحة التسجيل
                         );
                       },
                       child: Container(
@@ -114,12 +137,12 @@ class _LoginViewState extends State<LoginView> {
                           color: Colors.white12,
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        child: const Center(
+                        child:  Center(
                           child: CustomText(
                             text: 'Sign Up',
                             color: Colors.white,
                             size: 20,
-                            Weight: FontWeight.bold,
+                            weight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -128,7 +151,8 @@ class _LoginViewState extends State<LoginView> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => Root()), // صفحة التسجيل
+                          MaterialPageRoute(
+                              builder: (_) => const Root()), // صفحة التسجيل
                         );
                       },
                       child: Container(
@@ -139,7 +163,7 @@ class _LoginViewState extends State<LoginView> {
                             text: 'Continue as guest?',
                             color: Colors.white,
                             size: 15,
-                            Weight: FontWeight.bold,
+                            weight: FontWeight.bold,
                           ),
                         ),
                       ),

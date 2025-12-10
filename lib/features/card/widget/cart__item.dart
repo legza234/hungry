@@ -35,10 +35,10 @@ final Function ()? onAdd;
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(image, width: 120),
-                CustomText(text: text, Weight: FontWeight.bold),
+                CustomText(text: text, weight: FontWeight.bold),
                 CustomText(
                   text: decs,
-                  Weight: FontWeight.normal,
+                  weight: FontWeight.normal,
                 ),
 
 
@@ -59,7 +59,7 @@ final Function ()? onAdd;
                       ),
                     ),
                     Gap(20),
-                    CustomText(text:number.toString(), Weight: FontWeight.bold,size: 20,),
+                    CustomText(text:number.toString(), weight: FontWeight.bold,size: 20,),
                     Gap(20),
 
                     GestureDetector(
@@ -85,7 +85,7 @@ final Function ()? onAdd;
                         borderRadius: BorderRadius.circular(25)
                     ),
                     child: Center(
-                      child: CustomText(text: "Remove", Weight: FontWeight.bold,color: Colors.white,),
+                      child: CustomText(text: "Remove", weight: FontWeight.bold,color: Colors.white,),
                     ),
                   ),
                 )

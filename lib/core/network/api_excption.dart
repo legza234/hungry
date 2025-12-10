@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:hungry/core/network/api_error.dart';
 
 class ApiException {
+  final String message;
+
+  ApiException({required this.message});
+
   static ApiError handleError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:

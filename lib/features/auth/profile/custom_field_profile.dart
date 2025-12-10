@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomFieldProfile extends StatelessWidget {
-  const CustomFieldProfile({super.key, required this.controller, required this.label});
+  const CustomFieldProfile(
+      {super.key, required this.controller, required this.label});
 
   final TextEditingController controller ;
   final String label ;
