@@ -53,17 +53,12 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+
+    emailController = TextEditingController(text: 'malek2@gmail.com');
+    passwordController = TextEditingController(text: '123456789');
     formKey = GlobalKey<FormState>();
   }
 
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

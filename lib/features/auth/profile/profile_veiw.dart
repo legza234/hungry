@@ -8,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../core/constants/app_color.dart';
 import '../../checkout/widget/payment_method_selector.dart';
+import '../data/auth_repo.dart';
+import '../data/user_model.dart';
 import 'custom_field_profile.dart';
 
 class ProfileView extends StatefulWidget {
@@ -24,14 +26,9 @@ class _ProfileViewState extends State<ProfileView> {
   final TextEditingController _pas = TextEditingController();
   File? _image;
   bool _isLoading = false;
+  UserModel? userModel;
+  final AuthRepo authRepo = AuthRepo();
 
-  @override
-  void initState() {
-    super.initState();
-    _name.text = 'Knuckles';
-    _email.text = 'Knuckles@gmail.com';
-    _address.text = '55Dubai, UAE';
-  }
 
   @override
   void dispose() {
@@ -41,6 +38,36 @@ class _ProfileViewState extends State<ProfileView> {
     _pas.dispose();
     super.dispose();
   }
+
+
+  Future<void> getProfileData() async {
+    try {
+      final user = await authRepo.getProfileData();
+      setState(() {
+        userModel = user;
+        _name.text = userModel?.name ?? '';
+        _email.text = userModel?.email ?? '';
+        _address.text = userModel?.address ?? '';
+      });
+
+    }catch (e) {
+      String errorMsg = 'An error in profile';
+      if (e is ApiError) {
+        errorMsg = e.message;
+      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMsg)),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getProfileData();
+  }
+
 
   Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -64,9 +91,21 @@ class _ProfileViewState extends State<ProfileView> {
   Future<void> _editProfile() async {
     setState(() => _isLoading = true);
     try {
-      // TODO: Implement actual edit profile logic with API call
-      await Future.delayed(const Duration(seconds: 1)); // Simulate network call
+      final updatedUser = await authRepo.updateProfileData(
+        name: _name.text,
+        email: _email.text,
+        address: _address.text,
+        password: _pas.text,
+        image: _image,
+      );
+      setState(() {
+        userModel = updatedUser;
+        // Clear the local image so the new network image is used
+        _image = null;
+      });
+
       _showSnackBar("Profile updated successfully!");
+
     } catch (e) {
       String errorMessage = "An unexpected error occurred.";
       if (e is ApiError) {
@@ -83,13 +122,13 @@ class _ProfileViewState extends State<ProfileView> {
   Future<void> _logout() async {
     setState(() => _isLoading = true);
     try {
-      // TODO: Implement actual logout logic
-      await Future.delayed(const Duration(seconds: 1)); // Simulate network call
+
+      await authRepo.logout();
 
       if (!mounted) return;
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => const SignUpView()),
-        (Route<dynamic> route) => false,
+            (Route<dynamic> route) => false,
       );
     } catch (e) {
       String errorMessage = "An unexpected error occurred.";
@@ -153,14 +192,21 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   Widget _buildProfileImage() {
+    ImageProvider? backgroundImage;
+    if (_image != null) {
+      backgroundImage = FileImage(_image!);
+    } else if (userModel?.image != null && userModel!.image!.isNotEmpty) {
+      backgroundImage = NetworkImage(userModel!.image!);
+    }
+
     return Center(
       child: GestureDetector(
         onTap: _pickImage,
         child: CircleAvatar(
           radius: 60,
           backgroundColor: Colors.grey.shade300,
-          backgroundImage: _image != null ? FileImage(_image!) : null,
-          child: _image == null
+          backgroundImage: backgroundImage,
+          child: backgroundImage == null
               ? const Icon(Icons.camera_alt, size: 40)
               : null,
         ),

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:hungry/core/network/api_error.dart';
 import 'package:hungry/core/network/api_service.dart';
 import 'package:hungry/features/auth/data/user_model.dart';
 
@@ -67,51 +70,71 @@ class AuthRepo {
   }
 
   // GET PROFILE
-  Future<UserModel> getProfile() async {
+  Future<UserModel> getProfileData() async {
     try {
-      final response = await apiService.get('/user');
+      final response = await apiService.get('/profile');
 
       final data = response['data'];
-      final userData = data is Map && data.containsKey('user')
-          ? data['user']
-          : data;
+      // Handle cases where user data is nested under 'user' key
+      final userData = data is Map && data.containsKey('user') ? data['user'] : data;
 
       return UserModel.fromJson(userData);
 
     } on DioError catch (e) {
       throw ApiException.handleError(e);
-
     } catch (e) {
-      rethrow;
+     throw ApiError(message: "An error occurred while fetching profile: ${e.toString()}");
     }
   }
 
   // UPDATE PROFILE
-  Future<UserModel> updateProfile({
-    required String name,
-    required String email,
-    required String phone,
+  Future<UserModel> updateProfileData({
+    String? name,
+    String? email,
+    String? address,
+    String? password,
+    File? image,
   }) async {
     try {
-      final response = await apiService.post(
-        '/user',
-        {
-          '_method': 'PUT', // Laravel only
-          'name': name,
-          'email': email,
-          'phone': phone,
-        },
-      );
+      final Map<String, dynamic> data = {
+        '_method': 'PUT', // Required for Laravel to handle PUT in a POST request
+      };
 
-      return UserModel.fromJson(response['data']);
+      if (name != null) data['name'] = name;
+      if (email != null) data['email'] = email;
+      if (address != null) data['address'] = address;
+      if (password != null && password.isNotEmpty) {
+        data['password'] = password;
+      }
+
+      if (image != null) {
+        data['image'] = await MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+        );
+      }
+
+      // Always use FormData to ensure the Content-Type is multipart/form-data
+      final formData = FormData.fromMap(data);
+
+      // Post to the '/user' endpoint and pass formData directly
+      final response = await apiService.post('/user', formData as Map<String, dynamic>);
+
+      // Handle cases where user data is nested
+      final responseData = response['data'];
+      final userJson = responseData is Map && responseData.containsKey('user')
+          ? responseData['user']
+          : responseData;
+
+      return UserModel.fromJson(userJson);
 
     } on DioError catch (e) {
       throw ApiException.handleError(e);
-
     } catch (e) {
       rethrow;
     }
   }
+
 
   // LOGOUT
   Future<void> logout() async {
